@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:5000/api/jobs'; // Update later for production
+const API_BASE = 'https://job-tracker-backend-2j77.onrender.com/api/jobs';
 
 export const getJobs = () => axios.get(API_BASE);
 export const addJob = (job) => axios.post(API_BASE, job);

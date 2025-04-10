@@ -15,7 +15,10 @@ const addJob = async (req, res) => {
 const getJobs = async (req, res) => {
   try {
     const jobs = await Job.find();
-    res.json(jobs);
+    res.json({
+      message: 'Jobs fetched successfully',
+      data: jobs,
+    })
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
