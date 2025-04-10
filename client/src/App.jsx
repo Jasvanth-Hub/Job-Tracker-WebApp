@@ -4,13 +4,13 @@ import JobForm from './components/JobForm';
 import JobList from './components/JobList';
 
 function App() {
-  const [refresh, setRefresh] = useState(false);
+  const [refresh, setRefresh] = useState(0);
 
-  const handleRefresh = () => setRefresh(!refresh);
+  const handleRefresh = () => setRefresh((prev) => prev + 1);  
 
   return (
     <div className="App">
-      <h1>🎯 Student Job Tracker</h1>
+      <h1 className="heading">🎯 Student Job Tracker</h1>
       <JobForm onJobAdded={handleRefresh} />
       <JobList refreshFlag={refresh} />
     </div>

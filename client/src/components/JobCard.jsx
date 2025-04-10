@@ -13,8 +13,9 @@ const JobCard = ({ job, onRefresh }) => {
 
   return (
     <div className="job-card">
-      <h3>{job.company} - {job.role}</h3>
-      <p>Status:
+      <h3>{job.company} — {job.role}</h3>
+      <p>
+        Status:
         <select value={job.status} onChange={handleStatusChange}>
           <option>Applied</option>
           <option>Interview</option>
@@ -23,8 +24,7 @@ const JobCard = ({ job, onRefresh }) => {
         </select>
       </p>
       <p>Applied On: {new Date(job.appliedDate).toLocaleDateString()}</p>
-      <a href={job.link} target="_blank" rel="noreferrer">Job Link</a>
-      <br />
+      <p><a href={job.link} target="_blank" rel="noreferrer">View Job Posting</a></p>
       <button onClick={handleDelete}>Delete</button>
     </div>
   );

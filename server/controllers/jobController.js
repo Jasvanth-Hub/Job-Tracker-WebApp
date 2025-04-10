@@ -7,6 +7,7 @@ const addJob = async (req, res) => {
     await job.save();
     res.status(201).json(job);
   } catch (err) {
+    console.error('MongoDB Save Error:', err.message);
     res.status(400).json({ error: err.message });
   }
 };
@@ -15,10 +16,7 @@ const addJob = async (req, res) => {
 const getJobs = async (req, res) => {
   try {
     const jobs = await Job.find();
-    res.json({
-      message: 'Jobs fetched successfully',
-      data: jobs,
-    })
+    res.json(jobs)
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

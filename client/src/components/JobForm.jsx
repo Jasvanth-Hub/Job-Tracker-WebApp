@@ -17,16 +17,21 @@ const JobForm = ({ onJobAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addJob(form);
-      onJobAdded(); // Refresh job list
+      const jobData = {
+        ...form,
+        appliedDate: new Date(form.appliedDate) // Convert to Date object
+      };
+      await addJob(jobData);
+      onJobAdded();
       setForm({ company: '', role: '', status: 'Applied', appliedDate: '', link: '' });
     } catch (err) {
       console.error('Error adding job:', err);
     }
   };
+  
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: '2rem' }}>
+    <form onSubmit={handleSubmit}>
       <input name="company" placeholder="Company" value={form.company} onChange={handleChange} required />
       <input name="role" placeholder="Role" value={form.role} onChange={handleChange} required />
       <select name="status" value={form.status} onChange={handleChange}>

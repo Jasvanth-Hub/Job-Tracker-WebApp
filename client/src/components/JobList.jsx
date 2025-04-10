@@ -10,9 +10,11 @@ const JobList = ({ refreshFlag }) => {
   const fetchJobs = async () => {
     try {
       const res = await getJobs();
-      setJobs(res.data);
+      if (Array.isArray(res.data)) setJobs(res.data);
+      else setJobs([]);
     } catch (err) {
       console.error('Error fetching jobs:', err);
+      setJobs([]);
     }
   };
 
@@ -23,14 +25,11 @@ const JobList = ({ refreshFlag }) => {
   useEffect(() => {
     let filtered = [...jobs];
 
-    // Filter by status
     if (statusFilter !== 'All') {
       filtered = filtered.filter(job => job.status === statusFilter);
     }
 
-    // Sort by applied date (latest first)
     filtered.sort((a, b) => new Date(b.appliedDate) - new Date(a.appliedDate));
-
     setFilteredJobs(filtered);
   }, [statusFilter, jobs]);
 
